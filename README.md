@@ -25,9 +25,21 @@
 Сервер возвращает JSON-массив данных. Пример данных:
 
 [
-{
-id: 101, firstName: "Sue", lastName: "Corson", email: "DWhalley@in.gov", phone: "(612)211-6296", adress: {
-streetAddress: "9792 Mattis Ct", city: "Waukesha", state: "WI", zip: "22178" }, description: "et lacus magna dolor..." } }
+  {
+    id: 101, 
+    firstName: "Sue",
+    lastName: "Corson",
+    email: "DWhalley@in.gov",
+    phone: "(612)211-6296",
+    adress: {
+      streetAddress: "9792 Mattis Ct",
+      city: "Waukesha",
+      state: "WI",
+      zip: "22178"
+    },
+    description: "et lacus magna dolor..." 
+   } 
+ }
 
 Маленький набор данных можно получить по ссылке http://www.filltext.com/?rows=32&id={number|1000}&firstName={firstName}&l astName={lastName}&email={email}&phone={phone|(xxx)xxx-xx- xx}&adress={addressObject}&description={lorem|32}
 
@@ -49,7 +61,15 @@ streetAddress: "9792 Mattis Ct", city: "Waukesha", state: "WI", zip: "22178" }, 
 
 Схема визуального представления данных
 
-+----+------+------------+-----------------+-----------------+---------------+ | | id ▲ | firstName ▼| lastName ▼ | email ▼| phone ▼| +----+------+------------+-----------------+-----------------+---------------+ | | 101 | Sue | Corson | DWhalley@in.gov | (612)211-6296 | +----+------+------------+-----------------+-----------------+---------------+ | | 102 | Lor | Ipsumd | dwhalley@in.gov | (612)211-6296 | +----+------+------------+-----------------+-----------------+---------------+ | | 103 | Ips | Umdolo | dwhalley@in.gov | (612)211-6296 | +----+------+------------+-----------------+-----------------+---------------+ 
++----+------+------------+-----------------+-----------------+---------------+
+| | id ▲ | firstName ▼| lastName ▼ | email ▼| phone ▼|
++----+------+------------+-----------------+-----------------+---------------+
+| | 101 | Sue | Corson | DWhalley@in.gov | (612)211-6296 |
++----+------+------------+-----------------+-----------------+---------------+
+| | 102 | Lor | Ipsumd | dwhalley@in.gov | (612)211-6296 |
++----+------+------------+-----------------+-----------------+---------------+
+| | 103 | Ips | Umdolo | dwhalley@in.gov | (612)211-6296 |
++----+------+------------+-----------------+-----------------+---------------+ 
 
 Если выбран пользователем с id = 101 , то под таблицей выводим следующую информацию:
 
