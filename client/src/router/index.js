@@ -1,6 +1,8 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import App from '@/App.vue';
+import Small from '@/pages/Small.vue';
+import Big from '@/pages/Big.vue';
+
 
 Vue.use(Router);
 
@@ -8,10 +10,20 @@ export default new Router({
   mode: 'history',
   base: process.env.BASE_URL,
   routes: [
+    // {
+    //   path: '/',
+    //   name: 'home',
+    //   component: App,
+    // },
     {
-      path: '/',
-      name: 'home',
-      component: App,
+      path: '/small',
+      name: 'SmallData',
+      component: Small,
+    },
+    {
+      path: '/big',
+      name: 'BigData',
+      component: Big,
     },
     // {
     //   path: '/about',

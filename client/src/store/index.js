@@ -12,6 +12,8 @@ export default new Vuex.Store({
     data: null,
     bigData: null,
     smallData: null,
+
+    selectedRow: null,
   },
   mutations: {
     setData(state, data) {
@@ -22,6 +24,9 @@ export default new Vuex.Store({
     },
     setSmallData(state, data) {
       state.smallData = data;
+    },
+    setSelectedRow(state, row) {
+      state.selectedRow = row;
     },
   },
   actions: {
@@ -34,28 +39,33 @@ export default new Vuex.Store({
         console.error(error);
       }
     },
-    LOAD_BIG_DATA: ({ commit }) => new Promise((resolve, reject) => {
+    LOAD_BIG_DATA: ({ commit }) => new Promise((resolve) => {
       axios.get('/api/v1/data/big')
         .then(response => {
           const { data } = response.data;
-          commit('setBigData', data);
+          commit('setData', data);
           resolve(data);
         })
         .catch(error => {
           console.error(error);
         });
     }),
-
-    LOAD_SMALL_DATA: ({ commit }) => new Promise((resolve, reject) => {
+    LOAD_SMALL_DATA: ({ commit }) => new Promise((resolve) => {
       axios.get('/api/v1/data/small')
         .then(response => {
           const { data } = response.data;
-          commit('setSmallData', data);
+          commit('setData', data);
           resolve(data);
         })
         .catch(error => {
           console.error(error);
         });
     }),
+    SELECT_ROW: ({ commit }, row) => {
+      commit('setSelectedRow', row);
+    },
+    SORT_DATA: ({ commit }, data) => {
+      commit('setData', data);
+    },
   },
 });
