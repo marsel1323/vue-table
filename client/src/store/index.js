@@ -64,7 +64,13 @@ export default new Vuex.Store({
     SELECT_ROW: ({ commit }, row) => {
       commit('setSelectedRow', row);
     },
-    SORT_DATA: ({ commit }, data) => {
+    SORT_DATA: ({ commit, state }, { key, sortDirection }) => {
+      const data = [...state.data];
+      data.sort((a, b) => {
+        if (a[key] > b[key]) return sortDirection ? -1 : 1;
+        else if (a[key] < b[key]) return sortDirection ? 1 : -1;
+        return 0;
+      });
       commit('setData', data);
     },
   },

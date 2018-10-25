@@ -1,29 +1,58 @@
 <template>
     <div class="container">
         <TheHeader/>
-
         <main>
-            <router-view/>
+            <router-view :key="$route.path" v-show="showPage" @ready="pageReady"/>
+            <AppSpinner v-show="!showPage"/>
         </main>
-
-        <footer class="footer">
-            Footer
-        </footer>
     </div>
 </template>
 
 <script>
 import TheHeader from '@/components/TheHeader.vue';
+import AppSpinner from '@/components/AppSpinner.vue';
+import NProgress from 'nprogress';
 
 export default {
   name: 'App',
   components: {
     TheHeader,
+    AppSpinner,
+  },
+  data() {
+    return {
+      showPage: false,
+    };
+  },
+  methods: {
+    pageReady() {
+      this.showPage = true;
+      NProgress.done();
+    },
+  },
+  created() {
+    NProgress.configure({
+      // minimum: 0.6,
+      easing: 'ease',
+      speed: 500,
+      showSpinner: false,
+    });
+    NProgress.start();
+    this.$router.beforeEach((to, from, next) => {
+      this.showPage = false;
+      NProgress.start();
+      next();
+    });
   },
 };
 </script>
 
 <style lang="scss">
+    @import "~nprogress/nprogress.css";
+    #nprogress .bar {
+        background: #57AD8D;
+    }
+
     $font-primary: "K2D", sans-serif;
     // RESPONSIVE BREAKPOINTS
     $bp-largest: 75em; // 1200px / 16
