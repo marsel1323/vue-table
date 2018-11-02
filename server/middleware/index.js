@@ -1,6 +1,6 @@
 const api = require('koa-router')({ prefix: '/api/v1' });
 
-const data = require('./data');
+const data = require('./modules/data');
 
 api.use('/data', data.routes());
 

@@ -40,7 +40,7 @@ export default new Vuex.Store({
       }
     },
     LOAD_BIG_DATA: ({ commit }) => new Promise((resolve) => {
-      axios.get('/api/v1/data/big')
+      axios.get('/api/v1/data/big', {params: {cache: true}})
         .then(response => {
           const { data } = response.data;
           commit('setData', data);
@@ -51,7 +51,7 @@ export default new Vuex.Store({
         });
     }),
     LOAD_SMALL_DATA: ({ commit }) => new Promise((resolve) => {
-      axios.get('/api/v1/data/small')
+      axios.get('/api/v1/data/small',  {params: {cache: true}})
         .then(response => {
           const { data } = response.data;
           commit('setData', data);

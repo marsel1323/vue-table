@@ -10,54 +10,54 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+  import {mapActions} from 'vuex';
 
-import TheGridHead from './TheGridHead.vue';
-import TheGridBody from './TheGridBody.vue';
+  import TheGridHead from './TheGridHead.vue';
+  import TheGridBody from './TheGridBody.vue';
 
 
-export default {
-  name: 'TheTable',
-  props: {
-    gridData: {
-      type: Array,
-      required: true,
+  export default {
+    name: 'TheTable',
+    props: {
+      gridData: {
+        type: Array,
+        required: true,
+      },
+      headers: {
+        type: Array,
+        required: true,
+      },
     },
-    headers: {
-      type: Array,
-      required: true,
+    components: {
+      TheGridHead,
+      TheGridBody,
     },
-  },
-  components: {
-    TheGridHead,
-    TheGridBody,
-  },
-  data() {
-    return {
-      selectedRow: null,
-      selectedHead: null,
-      selectedItem: null,
-      sortDirection: false,
-    };
-  },
-  mounted() {
-    this.sort(this.headers[0].key);
-  },
-  methods: {
-    ...mapActions(['SELECT_ROW', 'SORT_DATA']),
-    selectRow(row) {
-      this.selectedRow = row;
-      this.SELECT_ROW(row);
+    data() {
+      return {
+        selectedRow: null,
+        selectedHead: null,
+        selectedItem: null,
+        sortDirection: false,
+      };
     },
-    sort(key) {
-      this.SORT_DATA({
-        key,
-        sortDirection: this.sortDirection,
-      });
-      this.sortDirection = !this.sortDirection;
+    mounted() {
+      // this.sort(this.headers[0].key);
     },
-  },
-};
+    methods: {
+      ...mapActions(['SELECT_ROW', 'SORT_DATA']),
+      selectRow(row) {
+        this.selectedRow = row;
+        this.SELECT_ROW(row);
+      },
+      sort(header) {
+        this.$emit('updateHeaderSort', header.key);
+        this.SORT_DATA({
+          key: header.key,
+          sortDirection: !header.sorted,
+        });
+      },
+    },
+  };
 </script>
 
 <style lang="scss">

@@ -1,6 +1,11 @@
 module.exports = {
-  port: 8081,
+  port: 8881,
   dataUrl: 'http://www.filltext.com/?id={number|1000}&firstName={firstName}&lastName={lastName}&email={email}&phone={phone|(xxx)xxx-xx-xx}&address={addressObject}&description={lorem|32}',
   bigDataUrl: 'http://www.filltext.com/?rows=1000&id={number|1000}&firstName={firstName}&delay=3&lastName={lastName}&email={email}&phone={phone|(xxx)xxx-xx-xx}&address={addressObject}&description={lorem|32}',
   smallDataUrl: 'http://www.filltext.com/?rows=32&id={number|1000}&firstName={firstName}&lastName={lastName}&email={email}&phone={phone|(xxx)xxx-xx-xx}&address={addressObject}&description={lorem|32}',
+  redis: {
+    expireTime: 24 * 60 * 60 * 1000,
+    port:6379,
+    host:'localhost'
+  }
 };

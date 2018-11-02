@@ -1,7 +1,7 @@
 const Koa = require('koa');
 const morgan = require('koa-morgan');
 const bodyParser = require('koa-bodyparser');
-const router = require('./middleware/modules');
+const router = require('./middleware/index');
 
 const app = new Koa();
 

@@ -1,14 +1,14 @@
 <template>
     <thead>
     <tr>
-        <th v-for="(header, index) in headers"
+        <th v-for="(header, index) in headers" style="cursor: pointer; width: 100px;"
             :key="index"
-            @click="sortBy(header.key)">
+            @click="sortBy(header)">
             {{header.title}}
-            <span >
+            <span v-if="header.sorted">
                 &darr;
             </span>
-            <span>
+            <span v-else-if="header.sorted === false">
                 &uarr;
             </span>
         </th>
@@ -17,20 +17,22 @@
 </template>
 
 <script>
-export default {
-  name: 'TheGridHead',
-  props: {
-    headers: {
-      type: Array,
-      required: true,
+  export default {
+    name: 'TheGridHead',
+    props: {
+      headers: {
+        type: Array,
+        required: true,
+      },
     },
-  },
-  methods: {
-    sortBy(key) {
-      this.$emit('sort', key);
+    methods: {
+      sortBy(header) {
+        if (header.sorting) {
+          this.$emit('sort', header);
+        }
+      },
     },
-  },
-};
+  };
 </script>
 
 <style scoped>

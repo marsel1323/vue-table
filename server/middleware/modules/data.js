@@ -3,7 +3,8 @@ const { data: dataService } = require('../../services/');
 
 router.get('/big', async (ctx) => {
   try {
-    const { data } = await dataService.listOfBigData();
+    const {cache} = ctx.query;
+    const data = await dataService.listOfBigData({cache});
     ctx.status = 200;
     ctx.body = { data };
   } catch (error) {
@@ -14,7 +15,8 @@ router.get('/big', async (ctx) => {
 
 router.get('/small', async (ctx) => {
   try {
-    const { data } = await dataService.listOfSmallData();
+    const {cache} = ctx.query;
+    const data = await dataService.listOfSmallData({cache});
     ctx.status = 200;
     ctx.body = { data };
   } catch (error) {
